@@ -1,0 +1,26 @@
+tsconfig.tsbuildinfo
+.DS_Store
+.envrc
+.idea/
+
+# Generated code
+generated/
+sdk/src/contracts/abis/
+*.gen.ts
+
+node_modules
+dist
+build
+
+# Publishing/gating password files
+
+**/secrets/*.json
+!**/secrets/*.template.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
