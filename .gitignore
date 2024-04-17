@@ -3,19 +3,9 @@ tsconfig.tsbuildinfo
 .envrc
 .idea/
 
-# Generated code
-generated/
-sdk/src/contracts/abis/
-*.gen.ts
-
 node_modules
 dist
 build
-
-# Publishing/gating password files
-
-**/secrets/*.json
-!**/secrets/*.template.json
 
 # Logs
 logs

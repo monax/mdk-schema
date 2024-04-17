@@ -1,4 +1,4 @@
-import * as z from "zod";
+import * as z from 'zod';
 
 export type Subdomain = z.infer<typeof Subdomain>;
 export const Subdomain = z

@@ -6,12 +6,6 @@ export const DEFAULT_PAGE_PARAMS: Required<PageParams> = {
   limit: 100,
 };
 
-export const Literal = z.union([z.string(), z.number(), z.boolean(), z.null()]);
-export type Literal = z.infer<typeof Literal>;
-
-export type Json = Literal | { [key: string]: Json } | Json[];
-export const Json: z.ZodType<Json> = z.lazy(() => z.union([Literal, z.array(Json), z.record(Json)]));
-
 export type TimeFrameParams = z.infer<typeof TimeFrameParams>;
 export const TimeFrameParams = z.object({
   createdAtFrom: z.coerce.date().optional(),

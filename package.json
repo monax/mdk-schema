@@ -1,12 +1,13 @@
 {
   "name": "mdk-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Monax Development Kit - Schema",
   "type": "module",
   "license": "Apache-2.0",
   "keywords": [],
   "repository": "git@github.com:monax/mdk-schema.git",
   "author": "Daniel Zahariev <daniel.zahariev@monaxlabs.io>",
+  "main": "src/index.js",
   "scripts": {
     "build": "pnpm build:ts",
     "build:ts": "tsc --build",
@@ -33,9 +34,5 @@
     "typescript": "^5.3.3",
     "uuid": "^9.0.1",
     "vitest": "^0.34.6"
-  },
-  "files": [
-    "./src"
-  ],
-  "main": "dist/index.js"
+  }
 }
