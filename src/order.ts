@@ -1,4 +1,4 @@
-import * as z from "zod";
+import * as z from 'zod';
 
 export type ShippingAddress = z.infer<typeof ShippingAddress>;
 export const ShippingAddress = z.object({

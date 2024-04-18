@@ -1,9 +1,7 @@
-import { UUID } from "./uuid.js";
+import { UUID } from './uuid.js';
 
 // stolen from segment's types (since it wasn't exported)
-export type IdentityOptions =
-  | { userId: string; anonymousId?: string }
-  | { userId?: string; anonymousId: string };
+export type IdentityOptions = { userId: string; anonymousId?: string } | { userId?: string; anonymousId: string };
 
 // the below type is used by the frontend components whereas the
 // AnalyticsContext type is used by the backend components

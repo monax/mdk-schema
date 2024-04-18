@@ -14,7 +14,8 @@
     "test": "vitest --run",
     "lint": "pnpm run lint:js && pnpm run lint:types",
     "lint:js": "eslint .",
-    "lint:types": "tsc --noEmit"
+    "lint:types": "tsc --noEmit",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "abitype": "^0.10.1",
@@ -31,6 +32,8 @@
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.51.0",
     "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.3.3",
     "uuid": "^9.0.1",
     "vitest": "^0.34.6"
