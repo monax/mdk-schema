@@ -7,5 +7,5 @@ type PrimitiveDebrand<T, P> = P extends P ? (T extends P ? P : never) : never;
 export type RemoveBranding<T, P = number | string | boolean> = T extends P
   ? PrimitiveDebrand<T, P>
   : T extends object
-  ? { [K in keyof T]: RemoveBranding<T[K], P> }
-  : T;
+    ? { [K in keyof T]: RemoveBranding<T[K], P> }
+    : T;
