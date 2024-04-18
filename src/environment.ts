@@ -5,8 +5,10 @@ import { UndefinedAsOptional } from './optional.js';
 export type NodeEnv = z.infer<typeof NodeEnv>;
 export const NodeEnv = z.enum(['test', 'local', 'dev', 'staging', 'production', 'development']);
 
-export type Stack = z.infer<typeof Stack>;
-export const Stack = z.enum(['local', 'dev', 'staging', 'production']);
+// preserve intellisense with this type
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Stack = 'local' | 'dev' | 'staging' | 'production' | (string & {});
+export const Stack = z.string();
 
 export type LogLevel = z.infer<typeof LogLevel>;
 export const LogLevel = z.enum(['trace', 'debug', 'warn', 'crit']);
