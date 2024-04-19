@@ -50,15 +50,11 @@ export function liftEnv<T>(key: string, lift: (s: string) => T, defaultValue?: T
 
 type EnvVarKey = string;
 
-// This just gives us the flexibility to pass the env var definition objects or arrays of their names around
 export type AnyEnvVar<V extends EnvVarKey> = readonly V[] | Partial<Record<V, unknown>>;
-export type EnvVarsOf<T> = T extends AnyEnvVar<infer V> ? V : never;
+export type TypeOf<T extends EnvVarKey, S extends Record<T, z.ZodType>> = z.infer<S[T]>;
 
-export type SchemaOf<T extends EnvVarKey, S extends Record<T, z.ZodType>> = { [K in T]: K extends T ? S[K] : never }[T];
-export type TypeOf<T extends EnvVarKey, S extends Record<T, z.ZodType>> = z.infer<SchemaOf<T, S>>;
-
-export type ConfigBag<V extends EnvVarKey, S extends Record<V, z.ZodType>> = {
-  [K in Extract<EnvVarKey, V>]: TypeOf<K, S>;
+export type ConfigBag<S extends Record<string, z.ZodType>> = {
+  [K in keyof S]: z.infer<S[K]>;
 };
 
 const getEnvVal = <V extends EnvVarKey, S extends Record<V, z.ZodType>, T = TypeOf<V, S>>(
@@ -71,18 +67,15 @@ const getEnvVal = <V extends EnvVarKey, S extends Record<V, z.ZodType>, T = Type
   return liftEnv(envVar, (s) => schema.parse(s), defaultValue);
 };
 
-export type ConfigSpec<T extends Record<EnvVarKey, z.ZodType>> = UndefinedAsOptional<ConfigBag<EnvVarsOf<T>, T>>;
+export type ConfigSpec<T extends Record<EnvVarKey, z.ZodType>> = UndefinedAsOptional<ConfigBag<T>>;
 
 export function getEnvVars<T extends EnvVarKey>(...ts: AnyEnvVar<T>[]): T[] {
   return ts.flatMap((t) => (Array.isArray(t) ? t : Object.keys(t)));
 }
 
-export function getConfigBag<V extends EnvVarKey, S extends Record<V, z.ZodType>>(
-  schemas: S,
-  ...tupleOrRecords: AnyEnvVar<V>[]
-): ConfigBag<V, S> {
-  const vars = Array.from(getEnvVars(...tupleOrRecords));
-  return vars.reduce((p, c) => ({ ...p, [c]: getEnvVal(c, schemas) }), Object.fromEntries(vars.map((e) => [e])));
+export function getConfigBag<S extends Record<string, z.ZodType>>(schema: S): ConfigBag<S> {
+  const vars = Array.from(getEnvVars(schema));
+  return vars.reduce((p, c) => ({ ...p, [c]: getEnvVal(c, schema) }), Object.fromEntries(vars.map((e) => [e])));
 }
 
 export type Bags<K extends string, V extends string> = { [k in K]: Bags<K, V> } | { [k in V]: z.ZodTypeAny };
