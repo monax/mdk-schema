@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import * as z from 'zod';
 
 export const HexColour = z

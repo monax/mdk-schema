@@ -12,9 +12,11 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "inlineSources": true,
-    "jsx": "react-jsx",
     "declarationMap": true,
     "declaration": true,
-    "lib": ["es2016", "esnext"]
-  }
+    "lib": ["es2016", "esnext", "DOM"],
+  },
+  // "include": ["src"],
+  // "exclude": ["src/**/*.test*"],
+  // "files": ["types/index.d.ts"]
 }
