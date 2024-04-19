@@ -25,7 +25,7 @@ export function isDevOrTestEnv(nodeEnv: NodeEnv): boolean {
 }
 
 export function mustEnv(key: string, ...unless: NodeEnv[]): string {
-  const optional = unless.includes(globalThis.process?.env?.NODE_ENV as NodeEnv);
+  const optional = unless.includes((globalThis as any).process?.env?.NODE_ENV as NodeEnv);
   const value = getEnv(key, optional ? '' : undefined);
   if (value === undefined) throw new Error(`Environment variable ${key} not set`);
   return value;
@@ -36,7 +36,7 @@ export function getEnv(key: string, defaultValue?: string | (() => string)): str
 }
 
 export function liftEnv<T>(key: string, lift: (s: string) => T, defaultValue?: T | (() => T)): T | undefined {
-  const value = globalThis.process?.env?.[key];
+  const value = (globalThis as any).process?.env?.[key];
   if (!value) {
     return isFunction(defaultValue) ? defaultValue() : defaultValue;
   }
