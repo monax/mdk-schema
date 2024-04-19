@@ -15,7 +15,8 @@
     "lint": "pnpm run lint:js && pnpm run lint:types",
     "lint:js": "eslint .",
     "lint:types": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "pnpm build"
   },
   "dependencies": {
     "abitype": "^0.10.1",
