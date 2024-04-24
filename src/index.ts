@@ -4,6 +4,7 @@ export * from './analytics.js';
 export * from './brand.js';
 export * from './chain.js';
 export * from './common.js';
+export * from './configbags.js';
 export * from './date.js';
 export * from './deep-partial.js';
 export * from './domain.js';

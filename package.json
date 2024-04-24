@@ -24,11 +24,8 @@
     "prepack": "tsc -P ./tsconfig.prod.json"
   },
   "dependencies": {
-    "abitype": "^0.10.1",
     "bigdecimal.js": "^1.3.0",
     "buffer": "^6.0.3",
-    "date-fns": "^2.30.0",
-    "duration-fns": "^3.0.2",
     "uuidv7": "^0.6.3",
     "viem": "^1.18.6",
     "zod": "^3.22.2"
