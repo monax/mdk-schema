@@ -4,6 +4,7 @@ import {
   Price,
   SupportedCurrency,
   formatPriceDisplay,
+  getPercentAmount,
   isSamePrice,
   sumPrices,
   toMajorDenomination,
@@ -110,5 +111,20 @@ describe('sumPrices', () => {
         currency: 'USD',
       }),
     );
+  });
+});
+
+describe('getPercentAmount', () => {
+  test('no decimals', () => {
+    expect(getPercentAmount(100.14, 1000, 0)).toBe(10);
+  });
+
+  test('with decimals', () => {
+    expect(getPercentAmount(100.14, 1000)).toBe(10.01);
+  });
+
+  // we don't perform rounding, but floor
+  test('rounding', () => {
+    expect(getPercentAmount(100.19, 1000)).toBe(10.01);
   });
 });
