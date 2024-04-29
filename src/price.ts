@@ -97,3 +97,9 @@ export const formatPriceDisplay = (price: Price, minimumDigits?: number): string
     minimumFractionDigits: minimumDigits ?? 2,
   }).format(amount);
 };
+
+/** The amount is floored at the number of decimals specified */
+export const getPercentAmount = (amount: number, bps: number, decimals = 2): number => {
+  const scale = Math.pow(10, Math.max(0, decimals));
+  return Math.floor((amount * bps * scale) / 10000) / scale;
+};
