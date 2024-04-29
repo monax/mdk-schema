@@ -24,6 +24,7 @@ export * from './price.js';
 export * from './string-decimal.js';
 export * from './string-integer.js';
 export * from './string-number.js';
+export * from './string.js';
 export * from './theme.js';
 export * from './url.js';
 export * from './uuid.js';
