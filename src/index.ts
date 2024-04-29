@@ -15,6 +15,7 @@ export * from './hex-colour.js';
 export * from './hex.js';
 export * from './json.js';
 export * from './mime-types.js';
+export * from './nonempty.js';
 export * from './numeric.js';
 export * from './optional.js';
 export * from './order.js';
