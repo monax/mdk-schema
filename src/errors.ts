@@ -14,3 +14,14 @@ export const ValidationErrors = z.array(ValidationError);
 
 export type ValidationErrorsString = z.infer<typeof ValidationErrorsString>;
 export const ValidationErrorsString = JsonString.pipe(ValidationErrors);
+
+export type ErrorLike = { name: string; message: string };
+export function isErrorLike(obj: unknown): obj is ErrorLike {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    Object.getPrototypeOf(obj) === Object.prototype &&
+    typeof (obj as ErrorLike).name === 'string' &&
+    typeof (obj as ErrorLike).message === 'string'
+  );
+}
