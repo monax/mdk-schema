@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "keywords": [],
   "repository": "git@github.com:monax/mdk-schema.git",
-  "author": "Daniel Zahariev <daniel.zahariev@monaxlabs.io>",
+  "author": "Monax Labs <hello@monax.io>",
   "main": "dist/index.js",
   "files": [
     "LICENSE",
