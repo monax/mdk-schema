@@ -1,5 +1,6 @@
 import * as z from 'zod';
 import { ChainId, SimpleHashChainName } from './chain.js';
+import { mockHex } from './hex.js';
 import { StringInteger } from './string-integer.js';
 
 // The database expects all addresses to be normalised to lowercase so for now we will normalise to lower
@@ -55,3 +56,7 @@ export function encodeTokenForSimpleHash(token: TokenAddress): string {
   const chainName = SimpleHashChainName.enum[token.chainId];
   return `${chainName}.${token.contractAddress}.${token.tokenId}`;
 }
+
+export const mockAddress = (): Address => {
+  return Address.parse(mockHex(40));
+};
