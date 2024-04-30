@@ -21,9 +21,6 @@ export const ChainName = z.nativeEnum(
   Object.fromEntries(Object.entries(ChainMap).map(([k, v]) => [v, k])) as Flip<typeof ChainMap>,
 );
 
-export type SupportedNetwork = z.infer<typeof SupportedNetwork>;
-export const SupportedNetwork = ChainName;
-
 const SimpleHashChainMap = {
   ethereum: ChainMap.Mainnet,
   'ethereum-goerli': ChainMap.Goerli,

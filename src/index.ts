@@ -29,6 +29,7 @@ export * from './string-integer.js';
 export * from './string-number.js';
 export * from './string.js';
 export * from './theme.js';
+export * from './type-helpers.js';
 export * from './url.js';
 export * from './uuid.js';
 export * from './values.js';
