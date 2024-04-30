@@ -12,6 +12,7 @@ export * from './domain.js';
 export * from './download.js';
 export * from './environment.js';
 export * from './errors.js';
+export * from './file.js';
 export * from './function.js';
 export * from './hex-colour.js';
 export * from './hex.js';
