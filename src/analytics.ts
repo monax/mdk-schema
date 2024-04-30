@@ -29,7 +29,12 @@ export type AnalyticsContext = {
     }
 );
 
-export type AnalyticsEventBase<N extends string, P> = {
+export type AnalyticsEventBase<N extends string, P extends Record<string, unknown>> = {
   name: N;
   properties?: P;
 };
+
+export interface IAnalyticsEvent {
+  name: string;
+  properties?: Record<string, unknown>;
+}
