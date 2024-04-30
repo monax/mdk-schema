@@ -25,3 +25,16 @@ export function isErrorLike(obj: unknown): obj is ErrorLike {
     typeof (obj as ErrorLike).message === 'string'
   );
 }
+
+// Raise is helpful when using null-coalescing operators as you get both a compile-time
+// type narrowing and a runtime exception where its not met.
+//
+// usage:
+// const input: string | undefined = /* TBD */
+// const output: string = input ?? raise("Input must be specified")
+// type TIn = typeof input // string | undefined
+// type TOut = typeof output // string
+
+export const raise = (err: string): never => {
+  throw new Error(err);
+};
