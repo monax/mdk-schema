@@ -1,6 +1,7 @@
 import * as z from 'zod';
 import { isFunction } from './function.js';
 import { UndefinedAsOptional } from './optional.js';
+import { Prettify } from './type-helpers.js';
 
 export type NodeEnv = z.infer<typeof NodeEnv>;
 export const NodeEnv = z.enum(['test', 'local', 'dev', 'staging', 'production', 'development']);
@@ -69,7 +70,7 @@ const getEnvVal = <V extends EnvVarKey, S extends Record<V, z.ZodType>, T = Type
   return liftEnv(envVar, (s) => schema.parse(s), defaultValue);
 };
 
-export type ConfigSpec<T extends Record<EnvVarKey, z.ZodType>> = UndefinedAsOptional<ConfigBag<T>>;
+export type ConfigSpec<T extends Record<EnvVarKey, z.ZodType>> = Prettify<UndefinedAsOptional<ConfigBag<T>>>;
 
 export function getEnvVars<T extends EnvVarKey>(...ts: AnyEnvVar<T>[]): T[] {
   return ts.flatMap((t) => (Array.isArray(t) ? t : Object.keys(t)));
