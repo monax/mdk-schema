@@ -12,6 +12,7 @@ export const PgConfigSpec = {
 
 export type AnalyticsConfig = ConfigSpec<typeof AnalyticsConfigSpec>;
 export const AnalyticsConfigSpec = {
+  SEGMENT_ANALYTICS_API_KEY_FRONTEND: z.string().optional(),
   SEGMENT_ANALYTICS_API_KEY_BACKEND: z.string().optional(),
 } as const;
 
