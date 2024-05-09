@@ -14,7 +14,6 @@
     "inlineSources": true,
     "declarationMap": true,
     "declaration": true,
-    "lib": ["es2016", "esnext", "DOM"],
-    "preserveSymlinks":true
+    "lib": ["es2016", "esnext", "DOM"]
   }
 }
