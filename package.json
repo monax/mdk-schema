@@ -8,11 +8,7 @@
   "repository": "git@github.com:monax/mdk-schema.git",
   "author": "Monax Labs <hello@monax.io>",
   "main": "dist/index.js",
-  "files": [
-    "LICENSE",
-    "package.json",
-    "dist"
-  ],
+  "files": ["LICENSE", "package.json", "dist"],
   "scripts": {
     "build": "pnpm build:ts",
     "build:ts": "tsc --build",
@@ -22,7 +18,7 @@
     "prepack": "tsc -P ./tsconfig.prod.json"
   },
   "dependencies": {
-    "bigdecimal.js": "^1.3.0",
+    "bigdecimal.js": "1.3.0",
     "buffer": "^6.0.3",
     "date-fns": "^3.6.0",
     "https": "^1.0.0",
