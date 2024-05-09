@@ -1,4 +1,4 @@
-import { Big, MathContext, RoundingMode } from 'bigdecimal.js';
+import { Big, MathContext, RoundingMode } from 'bigdecimal';
 import { describe, expect, test } from 'vitest';
 import {
   Price,

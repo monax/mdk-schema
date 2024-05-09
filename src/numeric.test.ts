@@ -1,4 +1,4 @@
-import { Big } from 'bigdecimal.js';
+import { Big } from 'bigdecimal';
 import { describe, expect, test } from 'vitest';
 import { Numeric } from './numeric.js';
 

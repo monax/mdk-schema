@@ -1,4 +1,4 @@
-import { Big, RoundingMode } from 'bigdecimal.js';
+import { Big, RoundingMode } from 'bigdecimal';
 import * as z from 'zod';
 import { PositiveStringDecimal, type StringDecimal } from './string-decimal.js';
 
