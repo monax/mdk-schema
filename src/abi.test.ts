@@ -7,6 +7,6 @@ describe('Abi', () => {
     const chars8 = '12345678';
     const chars32 = chars8 + chars8 + chars8 + chars8;
     bytes32String(chars32);
-    expect(() => bytes32String(chars32 + 'O')).toThrow('too long');
+    expect(() => bytes32String(`${chars32}O`)).toThrow('too long');
   });
 });

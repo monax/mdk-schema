@@ -1,5 +1,5 @@
 import { assertType, describe, test } from 'vitest';
-import { UndefinedAsOptional } from './optional.js';
+import type { UndefinedAsOptional } from './optional.js';
 
 describe('optional', () => {
   test('UndefinedAsOptional', () => {

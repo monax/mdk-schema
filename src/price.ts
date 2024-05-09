@@ -1,6 +1,6 @@
 import { Big, RoundingMode } from 'bigdecimal.js';
 import * as z from 'zod';
-import { PositiveStringDecimal, StringDecimal } from './string-decimal.js';
+import { PositiveStringDecimal, type StringDecimal } from './string-decimal.js';
 
 export type SupportedCurrency = z.infer<typeof SupportedCurrency>;
 export const SupportedCurrency = z.enum(['USD']);
@@ -35,7 +35,7 @@ export function toMajorDenomination<T extends StringDecimal | PositiveStringDeci
 ): T {
   const val = Big(amount);
   val.toBigIntExact(); // ensures that the value is an integer
-  return val.divide(Math.pow(10, CURRENCY_DECIMALS[currency])).toString() as T;
+  return val.divide(10 ** CURRENCY_DECIMALS[currency]).toString() as T;
 }
 
 /** Converts dollars to cents */
@@ -43,7 +43,10 @@ export function toMinorDenomination<T extends StringDecimal | PositiveStringDeci
   amount: T,
   currency: SupportedCurrency,
 ): T {
-  return Big(amount).multiply(Math.pow(10, CURRENCY_DECIMALS[currency])).toBigIntExact().toString() as T;
+  return Big(amount)
+    .multiply(10 ** CURRENCY_DECIMALS[currency])
+    .toBigIntExact()
+    .toString() as T;
 }
 
 // Note: every parsed price will have its amount transformed by `Big` so it is safe to compare them as strings
@@ -65,7 +68,7 @@ export const parsePrice = (amount: string | number, currency: SupportedCurrency)
 };
 
 export const formatPrice = (price: Price): number => {
-  return parseFloat(price.amount);
+  return Number.parseFloat(price.amount);
 };
 
 export const sumPrices = (prices: Price[]): Price => {
@@ -83,7 +86,7 @@ export const formatPriceDisplay = (price: Price, minimumDigits?: number): string
 
   // We might need a better strategy here for crypto currencies
 
-  if (amount % 1 == 0)
+  if (amount % 1 === 0)
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: price.currency,
@@ -100,6 +103,6 @@ export const formatPriceDisplay = (price: Price, minimumDigits?: number): string
 
 /** The amount is floored at the number of decimals specified */
 export const getPercentAmount = (amount: number, bps: number, decimals = 2): number => {
-  const scale = Math.pow(10, Math.max(0, decimals));
+  const scale = 10 ** Math.max(0, decimals);
   return Math.floor((amount * bps * scale) / 10000) / scale;
 };

@@ -5,8 +5,8 @@ describe('Amount', () => {
   test('Edge cases', () => {
     expect(() => StringDecimal.parse('hello')).toThrow('invalid_numeric');
     expect(() => StringDecimal.parse('')).toThrow('invalid_numeric');
-    expect(() => StringDecimal.parse(Infinity)).toThrow('invalid_numeric');
-    expect(() => StringDecimal.parse(-Infinity)).toThrow('invalid_numeric');
+    expect(() => StringDecimal.parse(Number.POSITIVE_INFINITY)).toThrow('invalid_numeric');
+    expect(() => StringDecimal.parse(Number.NEGATIVE_INFINITY)).toThrow('invalid_numeric');
     // spaces are not allowed
     expect(() => StringDecimal.parse('123 4')).toThrow('invalid_numeric');
     // no support for hexadecimals
@@ -26,8 +26,8 @@ describe('PositiveStringDecimal', () => {
   test('Edge cases', () => {
     expect(() => PositiveStringDecimal.parse('hello')).toThrow('invalid_numeric');
     expect(() => PositiveStringDecimal.parse('')).toThrow('invalid_numeric');
-    expect(() => PositiveStringDecimal.parse(Infinity)).toThrow('invalid_numeric');
-    expect(() => PositiveStringDecimal.parse(-Infinity)).toThrow('invalid_numeric');
+    expect(() => PositiveStringDecimal.parse(Number.POSITIVE_INFINITY)).toThrow('invalid_numeric');
+    expect(() => PositiveStringDecimal.parse(Number.NEGATIVE_INFINITY)).toThrow('invalid_numeric');
     // spaces are not allowed
     expect(() => PositiveStringDecimal.parse('123 4')).toThrow('invalid_numeric');
     // no support for hexadecimals

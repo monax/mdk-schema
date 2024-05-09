@@ -10,10 +10,10 @@ export const Hex = z
 export type Hex = z.infer<typeof Hex>;
 
 const randomHex = (length: number): string => {
-  const maxlen = 8,
-    min = Math.pow(16, Math.min(length, maxlen) - 1),
-    max = Math.pow(16, Math.min(length, maxlen)) - 1,
-    n = Math.floor(Math.random() * (max - min + 1)) + min;
+  const maxlen = 8;
+  const min = 16 ** (Math.min(length, maxlen) - 1);
+  const max = 16 ** Math.min(length, maxlen) - 1;
+  const n = Math.floor(Math.random() * (max - min + 1)) + min;
 
   let r = n.toString(16);
   while (r.length < length) {

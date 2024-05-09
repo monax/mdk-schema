@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import type * as z from 'zod';
 import { Numeric } from './numeric.js';
 
 export type StringDecimal = z.infer<typeof StringDecimal>;

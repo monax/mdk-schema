@@ -13,7 +13,7 @@ export const Json: z.ZodType<Json> = z.lazy(() => z.union([Literal, z.array(Json
 export const JsonString = z.string().transform((str, ctx): Json => {
   try {
     return JSON.parse(str);
-  } catch (e) {
+  } catch (_e) {
     ctx.addIssue({ code: 'custom', message: 'Invalid JSON' });
     return z.NEVER;
   }

@@ -33,7 +33,7 @@ export function encodeChainAddress(chainAddress: ChainAddress): string {
 
 export function decodeChainAddress(chainAddress: string): ChainAddress {
   const [chainId, address] = chainAddress.split(ADDRESS_DELIMITER);
-  return ChainAddress.parse({ chainId: parseInt(chainId, 10), address });
+  return ChainAddress.parse({ chainId: Number.parseInt(chainId, 10), address });
 }
 
 export type TokenAddress = z.infer<typeof TokenAddress>;
@@ -49,7 +49,7 @@ export function encodeTokenAddress(token: TokenAddress): string {
 
 export function decodeTokenAddress(tokenAddress: string): TokenAddress {
   const [chainId, contractAddress, tokenId] = tokenAddress.split(ADDRESS_DELIMITER);
-  return TokenAddress.parse({ chainId: parseInt(chainId, 10), contractAddress, tokenId });
+  return TokenAddress.parse({ chainId: Number.parseInt(chainId, 10), contractAddress, tokenId });
 }
 
 export function encodeTokenForSimpleHash(token: TokenAddress): string {

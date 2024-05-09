@@ -9,7 +9,7 @@ export const shortenString = (str: string | undefined | null, maxLength = 13): s
 export const truncateString = (str: string | undefined | null, maxLength = 50): string => {
   if (!str) return '';
   if (str.length <= maxLength) return str;
-  return str.slice(0, maxLength) + '...';
+  return `${str.slice(0, maxLength)}...`;
 };
 
 export function splitStringToLines(str: string, maxLineLength: number): string[] {
@@ -22,7 +22,7 @@ export function splitStringToLines(str: string, maxLineLength: number): string[]
       lines.push(currentLine.trim());
       currentLine = '';
     }
-    currentLine += word + ' ';
+    currentLine += `${word} `;
   }
   if (currentLine.length > 0) lines.push(currentLine.trim());
 

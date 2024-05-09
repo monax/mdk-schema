@@ -1,10 +1,10 @@
-import { Buffer } from 'buffer';
+import { Buffer } from 'buffer/';
 import {
-  Abi,
-  DecodeEventLogReturnType,
-  Hex,
-  InferEventName,
-  Log,
+  type Abi,
+  type DecodeEventLogReturnType,
+  type Hex,
+  type InferEventName,
+  type Log,
   decodeEventLog,
   encodeAbiParameters,
   getEventSelector,

@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: we don't care about the type
 export type Builtin = Date | ((args: any[]) => any) | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin

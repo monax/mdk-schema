@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { ConfigSpec } from './environment.js';
+import type { ConfigSpec } from './environment.js';
 
 export type PgConfig = ConfigSpec<typeof PgConfigSpec>;
 export const PgConfigSpec = {

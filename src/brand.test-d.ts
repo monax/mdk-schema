@@ -1,7 +1,7 @@
 import { assertType, test } from 'vitest';
 import * as z from 'zod';
-import { RemoveBranding } from './brand.js';
-import { StringInteger } from './string-integer.js';
+import type { RemoveBranding } from './brand.js';
+import type { StringInteger } from './string-integer.js';
 
 test('RemoveBranding', () => {
   const Num = z.number().gt(232).brand('Num');

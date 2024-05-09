@@ -26,7 +26,7 @@ const parseRgbValues = (s: string): [number, number, number] | null => {
   const matches = s.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)\s*$/i);
   if (!matches) return null;
 
-  const [, r, g, b] = matches.map((m) => parseInt(m, 10));
+  const [, r, g, b] = matches.map((m) => Number.parseInt(m, 10));
   return [r, g, b];
 };
 
@@ -34,8 +34,8 @@ const parseRgbaValues = (s: string): [number, number, number, number] | null => 
   const matches = s.match(/^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d(.\d*)?)\s*\)\s*$/i);
   if (!matches) return null;
 
-  const [, r, g, b] = matches.map((m) => parseInt(m, 10));
-  return [r, g, b, parseFloat(matches[4])];
+  const [, r, g, b] = matches.map((m) => Number.parseInt(m, 10));
+  return [r, g, b, Number.parseFloat(matches[4])];
 };
 
 /** A hex color string. Supports 3, 6 or 8 (alpha) character hex colors. */
@@ -84,7 +84,6 @@ export const RgbaColor = z
 export type AnyColor = z.infer<typeof AnyColor>;
 export const AnyColor = z.union([HexColor, RgbColor, RgbaColor]);
 
-type SemanticTokenColor = z.infer<typeof SemanticTokenColor>;
 const SemanticTokenColor = z.object({
   default: AnyColor,
   _dark: AnyColor,
@@ -129,9 +128,9 @@ export const toRgbColor = (color: Color): RgbColor => {
   const hexColor = HexColor.safeParse(color);
   if (hexColor.success) {
     const rgb = hexColor.data.slice(1, 7);
-    const r = parseInt(rgb.slice(0, 2), 16);
-    const g = parseInt(rgb.slice(2, 4), 16);
-    const b = parseInt(rgb.slice(4, 6), 16);
+    const r = Number.parseInt(rgb.slice(0, 2), 16);
+    const g = Number.parseInt(rgb.slice(2, 4), 16);
+    const b = Number.parseInt(rgb.slice(4, 6), 16);
     return RgbColor.parse(`rgb(${r}, ${g}, ${b})`);
   }
 

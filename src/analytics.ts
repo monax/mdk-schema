@@ -1,4 +1,4 @@
-import { UUID } from './uuid.js';
+import type { UUID } from './uuid.js';
 
 // stolen from segment's types (since it wasn't exported)
 export type IdentityOptions = { userId: string; anonymousId?: string } | { userId?: string; anonymousId: string };

@@ -17,7 +17,7 @@ export const formatDate = (date?: Date | string | number, format: DateFormat = '
   if (date instanceof Date) {
     parsedDate = date as Date;
   } else if (typeof date === 'string') {
-    if (z.coerce.number().safeParse(date).success) parsedDate = fromUnixTime(parseInt(date));
+    if (z.coerce.number().safeParse(date).success) parsedDate = fromUnixTime(Number.parseInt(date));
     else parsedDate = parseISO(date);
   } else if (typeof date === 'number') {
     parsedDate = fromUnixTime(date);

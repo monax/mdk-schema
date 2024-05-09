@@ -1,7 +1,7 @@
 import * as z from 'zod';
 import { isFunction } from './function.js';
-import { UndefinedAsOptional } from './optional.js';
-import { Prettify } from './type-helpers.js';
+import type { UndefinedAsOptional } from './optional.js';
+import type { Prettify } from './type-helpers.js';
 
 export type NodeEnv = z.infer<typeof NodeEnv>;
 export const NodeEnv = z.enum(['test', 'local', 'dev', 'staging', 'production', 'development']);
@@ -26,7 +26,7 @@ export function isDevOrTestEnv(nodeEnv: NodeEnv): boolean {
 }
 
 export function mustEnv(key: string, ...unless: NodeEnv[]): string {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: casting to any to access process.env
   const optional = unless.includes((globalThis as any).process?.env?.NODE_ENV as NodeEnv);
   const value = getEnv(key, optional ? '' : undefined);
   if (value === undefined) throw new Error(`Environment variable ${key} not set`);
@@ -38,7 +38,7 @@ export function getEnv(key: string, defaultValue?: string | (() => string)): str
 }
 
 export function liftEnv<T>(key: string, lift: (s: string) => T, defaultValue?: T | (() => T)): T | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: casting to any to access process.env
   const value = (globalThis as any).process?.env?.[key];
   if (!value) {
     return isFunction(defaultValue) ? defaultValue() : defaultValue;
@@ -83,22 +83,25 @@ export function getConfigBag<S extends Record<string, z.ZodType>>(schema: S): Co
 
 export type Bags<K extends string, V extends string> = { [k in K]: Bags<K, V> } | { [k in V]: z.ZodTypeAny };
 
-type FlattenBags<T> =
-  T extends Record<string, z.ZodTypeAny> ? T : T extends Record<infer K, unknown> ? FlattenBags<T[K]> : never;
+type FlattenBags<T> = T extends Record<string, z.ZodTypeAny>
+  ? T
+  : T extends Record<infer K, unknown>
+    ? FlattenBags<T[K]>
+    : never;
 
 type AllKeys<T> = T extends T ? keyof T : never;
 
 export type BagKeys<T> = AllKeys<FlattenBags<T>>;
 
-export type OptionalEnvVarKeys<S> =
-  S extends Record<infer Keys, z.ZodType>
-    ? {
-        [K in Keys]: S[K] extends { _def: { typeName: z.ZodFirstPartyTypeKind.ZodOptional } } ? K : never;
-      }[Keys]
-    : never;
+export type OptionalEnvVarKeys<S> = S extends Record<infer Keys, z.ZodType>
+  ? {
+      [K in Keys]: S[K] extends { _def: { typeName: z.ZodFirstPartyTypeKind.ZodOptional } } ? K : never;
+    }[Keys]
+  : never;
 
-export type RequiredEnvVarKeys<S> =
-  S extends Record<infer Keys, z.ZodType> ? Exclude<Keys, OptionalEnvVarKeys<S>> : never;
+export type RequiredEnvVarKeys<S> = S extends Record<infer Keys, z.ZodType>
+  ? Exclude<Keys, OptionalEnvVarKeys<S>>
+  : never;
 
 export function getOptionalEnvVarKeys<S extends Record<EnvVarKey, z.ZodType>>(schemas: S): Set<OptionalEnvVarKeys<S>> {
   return Object.freeze(

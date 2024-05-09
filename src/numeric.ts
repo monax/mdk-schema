@@ -10,7 +10,7 @@ export const Numeric = z.union([bigDecimalSchema, z.number(), z.string(), z.bigi
   } catch (err) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      message: 'invalid_numeric: ' + (isErrorWithMessage(err) ? err.message : ''),
+      message: `invalid_numeric: ${isErrorWithMessage(err) ? err.message : ''}`,
       fatal: true,
     });
     return z.NEVER;
