@@ -37,7 +37,7 @@ jobs:
       - name: Environment Setup
         uses: ./.github/actions/environment
 
-      - name: Lint
+      - name: Test
         run: pnpm test
 
   Build:
@@ -49,6 +49,6 @@ jobs:
       - name: Environment Setup
         uses: ./.github/actions/environment
 
-      - name: Lint
+      - name: Build
         run: pnpm build && pnpm prepack
 
