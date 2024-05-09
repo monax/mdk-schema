@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       bigdecimal.js:
-        specifier: ^1.3.0
-        version: 1.3.1
+        specifier: 1.3.0
+        version: 1.3.0
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -408,8 +408,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  bigdecimal.js@1.3.1:
-    resolution: {integrity: sha512-ovAaZP2zB3N+qdY/c7FI19FiMUl4wpM/x8IqL17jiUBwqacP5rY0xJoCHjTAF+++g9+hRGqIpQXpX893Bd8x4Q==}
+  bigdecimal.js@1.3.0:
+    resolution: {integrity: sha512-qGFPzhAjwv3iHqvScd/IclolF9GJGkH0Yf/HKcMCXmP3qK0qBAKbrxLFVRZC3KjE0h6ENUHB5IatYV+IV+FP5w==}
     engines: {node: '>=10.4.0'}
 
   buffer@6.0.3:
@@ -913,7 +913,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  bigdecimal.js@1.3.1: {}
+  bigdecimal.js@1.3.0: {}
 
   buffer@6.0.3:
     dependencies:
