@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      bigdecimal:
+        specifier: npm:bigdecimal.js@1.3.0
+        version: bigdecimal.js@1.3.0
       bigdecimal.js:
         specifier: 1.3.0
         version: 1.3.0
