@@ -1,6 +1,6 @@
+import type {} from 'bigdecimal';
 import type * as z from 'zod';
 import { Numeric } from './numeric.js';
-import type {} from 'bigdecimal';
 
 export type StringDecimal = z.infer<typeof StringDecimal>;
 export const StringDecimal = Numeric.transform((v) => v.toString()).brand('StringDecimal');
