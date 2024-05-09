@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignore": ["pnpm-lock.yaml"]
+    "ignore": ["package.json", "pnpm-lock.yaml"]
   },
   "formatter": {
     "enabled": true,
