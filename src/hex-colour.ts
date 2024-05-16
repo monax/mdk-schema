@@ -1,4 +1,5 @@
-import { Buffer } from 'buffer/index.js';
+// biome-ignore lint/style/useNodejsImportProtocol: polyfill
+import { Buffer } from 'buffer';
 import * as z from 'zod';
 
 export const HexColour = z
