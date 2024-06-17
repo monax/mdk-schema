@@ -1,6 +1,5 @@
 export enum ImageMimeType {
   JPG = 'image/jpeg',
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   JPEG = 'image/jpeg',
   PNG = 'image/png',
   GIF = 'image/gif',

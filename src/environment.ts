@@ -6,10 +6,8 @@ import type { Prettify } from './type-helpers.js';
 export type NodeEnv = z.infer<typeof NodeEnv>;
 export const NodeEnv = z.enum(['test', 'local', 'dev', 'staging', 'production', 'development']);
 
-// preserve intellisense with this type
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type Stack = 'local' | 'dev' | 'staging' | 'production' | (string & {});
-export const Stack = z.string();
+export const Stack = z.string().min(1);
 
 export type LogLevel = z.infer<typeof LogLevel>;
 export const LogLevel = z.enum(['trace', 'debug', 'warn', 'crit']);
@@ -64,10 +62,11 @@ const getEnvVal = <V extends EnvVarKey, S extends Record<V, z.ZodType>, T = Type
   envVar: V,
   schemas: S,
   defaultValue?: T | (() => T),
+  validate = true,
 ): T => {
   const schema = schemas[envVar];
   if (!schema) throw new Error(`No schema for env var ${envVar}`);
-  return liftEnv(envVar, (s) => schema.parse(s), defaultValue);
+  return liftEnv(envVar, (s) => (validate ? schema.parse(s) : s), defaultValue);
 };
 
 export type ConfigSpec<T extends Record<EnvVarKey, z.ZodType>> = Prettify<UndefinedAsOptional<ConfigBag<T>>>;
@@ -76,9 +75,12 @@ export function getEnvVars<T extends EnvVarKey>(...ts: AnyEnvVar<T>[]): T[] {
   return ts.flatMap((t) => (Array.isArray(t) ? t : Object.keys(t)));
 }
 
-export function getConfigBag<S extends Record<string, z.ZodType>>(schema: S): ConfigBag<S> {
+export function getConfigBag<S extends Record<string, z.ZodType>>(schema: S, validate = true): ConfigBag<S> {
   const vars = Array.from(getEnvVars(schema));
-  return vars.reduce((p, c) => ({ ...p, [c]: getEnvVal(c, schema) }), Object.fromEntries(vars.map((e) => [e])));
+  return vars.reduce(
+    (p, c) => ({ ...p, [c]: getEnvVal(c, schema, undefined, validate) }),
+    Object.fromEntries(vars.map((e) => [e])),
+  );
 }
 
 export type Bags<K extends string, V extends string> = { [k in K]: Bags<K, V> } | { [k in V]: z.ZodTypeAny };

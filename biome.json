@@ -90,7 +90,7 @@
         "useValidTypeof": "error"
       }
     },
-    "ignore": ["dist", ".eslintrc.cjs"]
+    "ignore": ["dist"]
   },
   "javascript": {
     "formatter": {
