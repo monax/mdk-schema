@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { isFunction } from './function.js';
-import type { UndefinedAsOptional } from './optional.js';
+import type { UndefinedAsOptional } from './type-helpers.js';
 import type { Prettify } from './type-helpers.js';
 
 export type NodeEnv = z.infer<typeof NodeEnv>;

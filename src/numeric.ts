@@ -1,5 +1,6 @@
 import { Big, BigDecimal } from 'bigdecimal';
 import * as z from 'zod';
+import { isErrorLike } from './errors.js';
 
 const bigDecimalSchema = z.custom<BigDecimal>((v) => v instanceof BigDecimal);
 
@@ -10,7 +11,7 @@ export const Numeric = z.union([bigDecimalSchema, z.number(), z.string(), z.bigi
   } catch (err) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      message: `invalid_numeric: ${isErrorWithMessage(err) ? err.message : ''}`,
+      message: `invalid_numeric: ${isErrorLike(err) ? err.message : ''}`,
       fatal: true,
     });
     return z.NEVER;
@@ -19,7 +20,3 @@ export const Numeric = z.union([bigDecimalSchema, z.number(), z.string(), z.bigi
 
 // This is literally just BigDecimal
 export type Numeric = z.infer<typeof Numeric>;
-
-function isErrorWithMessage(err: unknown): err is { message: string } {
-  return typeof err === 'object' && err !== null && 'message' in err;
-}
