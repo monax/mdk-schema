@@ -27,3 +27,7 @@ export type RequireOptional<T> = Prettify<{
 export type RequireOptionalDeep<T> = Prettify<{
   [K in keyof T]-?: T[K] extends object ? RequireOptionalDeep<T[K]> : NonNullable<T[K]>;
 }>;
+
+export type PrefixProps<T, P extends string> = {
+  [K in keyof T as K extends string ? `${P}${K}` : never]: T[K];
+} & unknown;

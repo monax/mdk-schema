@@ -18,3 +18,8 @@ export const JsonString = z.string().transform((str, ctx): Json => {
     return z.NEVER;
   }
 });
+
+export const stringify = (value: Json | null): string | null => {
+  if (value === null) return null;
+  return typeof value !== 'string' ? JSON.stringify(value) : value;
+};
