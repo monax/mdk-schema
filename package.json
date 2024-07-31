@@ -1,6 +1,6 @@
 {
   "name": "mdk-schema",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Monax Development Kit - Schema",
   "type": "module",
   "license": "Apache-2.0",
@@ -38,7 +38,7 @@
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
-    "zod": "3.23.5"
+    "zod": "3.23.8"
   },
   "peerDependenciesMeta": {
     "zod": {
