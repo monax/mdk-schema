@@ -1,6 +1,6 @@
 {
   "name": "mdk-schema",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Monax Development Kit - Schema",
   "type": "module",
   "license": "Apache-2.0",
