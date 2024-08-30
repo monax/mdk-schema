@@ -9,7 +9,7 @@ export const Hex = z
 
 export type Hex = z.infer<typeof Hex>;
 
-const randomHex = (length: number): string => {
+export const randomHex = (length: number): string => {
   const maxlen = 8;
   const min = 16 ** (Math.min(length, maxlen) - 1);
   const max = 16 ** Math.min(length, maxlen) - 1;
