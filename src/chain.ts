@@ -11,6 +11,7 @@ const ChainMap = {
   Mumbai: 80001,
   Base_Mainnet: 8453,
   Base_Goerli: 84531,
+  Base_Sepolia: 84532,
 } as const;
 
 export type ChainId = z.infer<typeof ChainId>;
@@ -28,6 +29,7 @@ const SimpleHashChainMap = {
   'polygon-mumbai': ChainMap.Mumbai,
   base: ChainMap.Base_Mainnet,
   'base-goerli': ChainMap.Base_Goerli,
+  'base-sepolia': ChainMap.Base_Sepolia,
 } as const;
 
 export type SimpleHashChainId = typeof SimpleHashChainId;
