@@ -12,6 +12,7 @@ const ChainMap = {
   Base_Mainnet: 8453,
   Base_Goerli: 84531,
   Base_Sepolia: 84532,
+  Foundry: 31337,
 } as const;
 
 export type ChainId = z.infer<typeof ChainId>;
@@ -30,6 +31,7 @@ const SimpleHashChainMap = {
   base: ChainMap.Base_Mainnet,
   'base-goerli': ChainMap.Base_Goerli,
   'base-sepolia': ChainMap.Base_Sepolia,
+  'do-not-use-1': ChainMap.Foundry,
 } as const;
 
 export type SimpleHashChainId = typeof SimpleHashChainId;
