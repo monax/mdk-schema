@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { splitStringToLines } from './string';
+import { splitStringToLines } from './string.js';
 
 describe('string', () => {
   test('splitStringToLines', () => {

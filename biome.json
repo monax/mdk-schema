@@ -59,7 +59,8 @@
         "useIsNan": "error",
         "useValidForDirection": "error",
         "useYield": "error",
-        "noUnusedImports": "error"
+        "noUnusedImports": "error",
+        "useImportExtensions": "error"
       },
       "style": { "noNamespace": "error", "useAsConstAssertion": "error" },
       "suspicious": {
