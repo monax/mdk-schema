@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { JsonString } from './json.js';
 
 export type ValidationError = z.infer<typeof ValidationError>;
@@ -32,3 +32,14 @@ export function isErrorLike(obj: unknown): obj is ErrorLike {
 export const raise = (err: string): never => {
   throw new Error(err);
 };
+
+export function formatZodErrors(error: z.ZodError) {
+  return error.errors
+    .map((e) => {
+      if (e.code === 'invalid_type') {
+        return `${e.message} '${e.path.join('.')}'! Received: ${e.received}; Expected: ${e.expected}`;
+      }
+      return `${e.message} '${e.path.join('.')}'! Code: ${e.code}`;
+    })
+    .join('\n');
+}
