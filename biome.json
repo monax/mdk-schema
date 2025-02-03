@@ -58,7 +58,8 @@
         "noUnusedVariables": "error",
         "useIsNan": "error",
         "useValidForDirection": "error",
-        "useYield": "error"
+        "useYield": "error",
+        "noUnusedImports": "error"
       },
       "style": { "noNamespace": "error", "useAsConstAssertion": "error" },
       "suspicious": {
@@ -94,7 +95,7 @@
   },
   "javascript": {
     "formatter": {
-      "trailingComma": "all",
+      "trailingCommas": "all",
       "semicolons": "always",
       "quoteStyle": "single"
     }

@@ -1,4 +1,3 @@
-// biome-ignore lint/style/useNodejsImportProtocol: polyfill
 import { Buffer } from 'buffer';
 import { type Hex, encodeAbiParameters } from 'viem';
 
