@@ -1,6 +1,6 @@
 import { uuidv7 } from 'uuidv7';
 import * as z from 'zod';
-import { Hex } from './hex';
+import { Hex } from './hex.js';
 
 export const UUID = z.string().uuid().brand('UUID');
 
